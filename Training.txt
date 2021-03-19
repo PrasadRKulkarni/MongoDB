@@ -1,0 +1,33 @@
+Mongo DB - Thapa (https://www.youtube.com/watch?v=vQMjjZa102U&list=PLwGdqUZWnOp00IbeN0OtL9dmnasipZ9x8&index=43)
+-------------------------------------------------------------------------------------------------------------------
+"C:\Program Files\MongoDB\Server\4.4\bin\mongo.exe"
+show dbs
+use PrasadMongoDB
+db
+//Insert document into collections
+db.customer.insertOne({name: "Prasad", type: "frontEnd", videos: 80, active: true})
+db.customer.insertMany([{name: "Prasad", type: "frontEnd", videos: 80, active: true}, {name: "Saroja", type: "frontEnd", videos: 5, active: true}])
+show collections
+db.customer.find()
+db.customer.find().pretty()
+quit()
+
+//Read documet
+db.customer.find({name: "Prasad"}).pretty()
+//show only one column
+db.customer.find({name: "Prasad"}, {name:1}).pretty()
+//Hide id column
+db.customer.find({name: "Prasad"}, {_id:0, name:1}).pretty()
+db.customer.find({active: true}, {_id:0, name:1}).pretty()
+//Show top 1
+db.customer.find({name: "Prasad"}).pretty().limit(1)
+OR
+db.customer.findOne({name: "Prasad"})
+
+//Update document
+db.customer.updateOne({name: "Prasad"}, {$set: {type: "FullStack"}})
+
+//Delete document
+db.customer.deleteMany({name: "Saroja"})
+//Delete full collections
+db.customer.deleteMany({})
